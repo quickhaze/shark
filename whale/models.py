@@ -17,4 +17,4 @@ class Animal(models.Model):
 class Property(models.Model):
     '''
     '''
-    price = models.IntegerField()
+    pricex = models.IntegerField()
