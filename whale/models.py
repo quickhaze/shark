@@ -9,3 +9,7 @@ class Animal(models.Model):
 
     def speak(self):
         return f'The {self.name} says "{self.sound}"'
+    
+
+    def __str__(self):
+        return f"{self.name}"
