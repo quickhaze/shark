@@ -13,3 +13,8 @@ class Animal(models.Model):
 
     def __str__(self):
         return f"{self.name}"
+
+class Property(models.Model):
+    '''
+    '''
+    price = models.IntegerField()
