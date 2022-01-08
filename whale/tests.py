@@ -3,10 +3,10 @@ from whale.models import Animal
 # Create your tests here.
 
 
-class HelloTest(TestCase):
-    ...
-
 class AnimalTestCase(TestCase):
+    """
+
+    """
     def setUp(self):
         Animal.objects.create(name="lion", sound="roar")
         Animal.objects.create(name="cat", sound="meow")
