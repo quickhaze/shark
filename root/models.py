@@ -5,11 +5,11 @@ from django.db import models
 class InitModel(models.Model):
     '''
     '''
-    created_at = models.DateTimeField(auto_created=True)
-    updated_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         abstract = True
 
     def __str__(self) -> str:
-        return self.created_at
+        return f"{self.created_at}"
