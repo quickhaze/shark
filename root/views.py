@@ -1,3 +1,4 @@
+from curses.ascii import HT
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views import View
@@ -24,3 +25,10 @@ def hello_view(request):
 class IndexView(View):
     def get(self, request, *args, **kwrags):
         return HttpResponse("This is  index")
+
+def arm(request):
+    return HttpResponse("try this is")
+
+def new_index(request):
+    return HttpResponse("hello this is")
+
