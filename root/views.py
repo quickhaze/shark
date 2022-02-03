@@ -23,3 +23,10 @@ class IndexView(View):
 class HomeView(View):
     def get(request):
         return HttpResponse("<h1>Hello All</h1>")
+
+def arm(request):
+    return HttpResponse("try this is")
+
+
+def new_index(request):
+    return HttpResponse("hello this is")

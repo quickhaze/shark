@@ -2,14 +2,10 @@ name: Django CI
 
 on:
   push:
-    branches: 
-      - 'main'
-      - 'staging'
-      
+    branches: [ main, staging, neeraj ]
   pull_request:
-    branches:
-      - 'main'
-      - 'staging'
+    branches: [ main, staging, neeraj ]
+
 jobs:
   run-linters:
     name: Run linters
