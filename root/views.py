@@ -18,3 +18,9 @@ class IndexView(View):
     def get(self, request, *args, **kwrags):
         return HttpResponse("This is  index")
     
+
+
+
+class HomeView(View):
+    def get(request):
+        return HttpResponse("<h1>Hello All</h1>")
