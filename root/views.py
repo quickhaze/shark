@@ -31,3 +31,4 @@ class IndexView(View):
 class HomeView(View):
     def get(request):
         return HttpResponse("<h1>Hello All</h1>")
+        
