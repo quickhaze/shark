@@ -6,38 +6,38 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('caffer', '0002_alter_project_cracker'),
+        ("caffer", "0002_alter_project_cracker"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='project',
-            name='created_at',
+            model_name="project",
+            name="created_at",
             field=models.DateTimeField(auto_now_add=True),
         ),
         migrations.AlterField(
-            model_name='project',
-            name='updated_at',
+            model_name="project",
+            name="updated_at",
             field=models.DateTimeField(auto_now=True),
         ),
         migrations.AlterField(
-            model_name='projectdeveloper',
-            name='created_at',
+            model_name="projectdeveloper",
+            name="created_at",
             field=models.DateTimeField(auto_now_add=True),
         ),
         migrations.AlterField(
-            model_name='projectdeveloper',
-            name='updated_at',
+            model_name="projectdeveloper",
+            name="updated_at",
             field=models.DateTimeField(auto_now=True),
         ),
         migrations.AlterField(
-            model_name='roleinproject',
-            name='created_at',
+            model_name="roleinproject",
+            name="created_at",
             field=models.DateTimeField(auto_now_add=True),
         ),
         migrations.AlterField(
-            model_name='roleinproject',
-            name='updated_at',
+            model_name="roleinproject",
+            name="updated_at",
             field=models.DateTimeField(auto_now=True),
         ),
     ]

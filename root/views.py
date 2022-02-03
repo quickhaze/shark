@@ -8,12 +8,19 @@ BASE_URL = "https://github.com/quickhaze/shark/pulls"
 
 # Create your views here.
 
+
 def administration(request):
+<<<<<<< HEAD
     return render(request, 'homepage.html')
 
     
+=======
+    return render(request, "homepage.html")
+
+
+>>>>>>> c892de625e93deb6a84eeca78f5f235f03dd2741
 def hii(request):
-    return HttpResponse('this hii virew')
+    return HttpResponse("this hii virew")
 
 
 def hello_view(request):
