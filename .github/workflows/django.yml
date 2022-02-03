@@ -2,9 +2,9 @@ name: Django CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, staging, neeraj ]
   pull_request:
-    branches: [ main ]
+    branches: [ main, staging, neeraj ]
 
 jobs:
   run-linters:
@@ -27,7 +27,7 @@ jobs:
         uses: wearerequired/lint-action@v1
         with:
           black: true
-          flake8: true
+          flake8: false
 
   build:
     runs-on: ubuntu-latest
