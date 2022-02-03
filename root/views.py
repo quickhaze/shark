@@ -2,6 +2,8 @@ from django.http import HttpResponse
 from django.views import View
 
 # Create your views here.
+def hii(request):
+    return HttpResponse('this hii virew')
 
 
 def hello_view(request):
