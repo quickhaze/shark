@@ -7,5 +7,5 @@ app_name = "root"
 urlpatterns = [
     path("administration", views.administration, name="administration"),
     path("", IndexView.as_view(), name="index"),
-    path("home/", HomeView.as_view(), name="home"),
+    path("home/", HomeView.as_view(), name="home-view"),
 ]
