@@ -7,14 +7,20 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('peck', '0002_alter_role_role'),
-        ('caffer', '0001_initial'),
+        ("peck", "0002_alter_role_role"),
+        ("caffer", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='project',
-            name='cracker',
-            field=models.ForeignKey(help_text='The name of the developer who cracked the interview', max_length=200, on_delete=django.db.models.deletion.PROTECT, related_name='project_cracker', to='peck.developer'),
+            model_name="project",
+            name="cracker",
+            field=models.ForeignKey(
+                help_text="The name of the developer who cracked the interview",
+                max_length=200,
+                on_delete=django.db.models.deletion.PROTECT,
+                related_name="project_cracker",
+                to="peck.developer",
+            ),
         ),
     ]

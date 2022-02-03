@@ -6,18 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('peck', '0002_alter_role_role'),
+        ("peck", "0002_alter_role_role"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='developer',
-            name='created_at',
+            model_name="developer",
+            name="created_at",
             field=models.DateTimeField(auto_now_add=True),
         ),
         migrations.AlterField(
-            model_name='developer',
-            name='updated_at',
+            model_name="developer",
+            name="updated_at",
             field=models.DateTimeField(auto_now=True),
         ),
     ]
