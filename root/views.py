@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.views import View
 
 
-BASE_URL = "THIS IS TEST"
+BASE_URL = "https://github.com/quickhaze/shark/pulls"
 
 
 # Create your views here.
@@ -17,4 +17,3 @@ def hello_view(request):
 class IndexView(View):
     def get(self, request, *args, **kwrags):
         return HttpResponse("This is  index")
-    
