@@ -1,17 +1,19 @@
 from statistics import mode
 from django.db import models
 from root.models import InitModel
+
 # Create your models here.
 from django.contrib.auth.models import User
 
-ROLE =(
+ROLE = (
     ("developer", "developer"),
     ("designer", "designer"),
 )
 
+
 class Role(models.Model):
     role = models.CharField(max_length=30, choices=ROLE, unique=True)
-    
+
     def __str__(self) -> str:
         return f"{self.role}"
 
