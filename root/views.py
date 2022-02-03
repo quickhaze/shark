@@ -31,3 +31,4 @@ def arm(request):
 
 def new_index(request):
     return HttpResponse("hello this is")
+
