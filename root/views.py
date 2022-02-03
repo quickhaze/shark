@@ -26,9 +26,10 @@ class IndexView(View):
     def get(self, request, *args, **kwrags):
         return HttpResponse("This is  index")
 
+
 def arm(request):
     return HttpResponse("try this is")
 
+
 def new_index(request):
     return HttpResponse("hello this is")
-
