@@ -42,6 +42,9 @@ INSTALLED_APPS = [
     "caffer",
     "peck",
     "root",
+    "info",
+    "rest_framework",
+
 ]
 
 MIDDLEWARE = [
