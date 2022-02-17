@@ -6,8 +6,16 @@ from root.models import InitModel
 from django.contrib.auth.models import User
 
 ROLE = (
-    ("developer", "developer"),
-    ("designer", "designer"),
+    ("sde1", "Software Developer I"),
+    ("sde2", "Software Developer II"),
+    ("sde3", "Software Developer III"),
+    ("sde4", "Software Developer IV"),
+    ("graphic_designer", "Graphic Designer"),
+    ("qa", "Quality Analyst"),
+    ("python_developer", "Python Developer"),
+    ("django_developer", "Django Developer"),
+    ("tl", "Team_leader"),
+    ("project_manager", "Project Manager"),
 )
 
 
