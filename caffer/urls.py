@@ -8,8 +8,4 @@ urlpatterns = [
     path("roleinprojectlist/", RoleInProjectList.as_view()),
     path("roleinprojectlist/<int:pk>/", RoleInProjectGet.as_view()),
     path("prolist/<int:pk>/", ProjectGet1.as_view()),
-
-
-
-
 ]

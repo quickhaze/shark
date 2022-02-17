@@ -6,5 +6,4 @@ urlpatterns = [
     path("rolelist/<int:pk>/", RoleGet.as_view()),
     path("developerlist/", DeveloperList.as_view()),
     path("developerlist/<int:pk>", DeveloperGet.as_view()),
-
 ]

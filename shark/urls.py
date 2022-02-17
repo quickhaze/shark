@@ -23,7 +23,4 @@ urlpatterns = [
     path("info/", include("info.urls")),
     path("peck/", include("peck.urls")),
     path("caffer/", include("caffer.urls")),
-
-
-    
 ]

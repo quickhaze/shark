@@ -20,11 +20,14 @@ class InformationAdmin(admin.ModelAdmin):
 
 admin.site.register(Course)
 
+
 class StudenAdmin(admin.ModelAdmin):
-    list_display=['name','course','wriit']
+    list_display = ["name", "course", "wriit"]
+
 
 class CollegeAdmin(admin.ModelAdmin):
-    list_display=['name','students_count']
+    list_display = ["name", "students_count"]
 
-admin.site.register(College,CollegeAdmin)
-admin.site.register(Student,StudenAdmin)
+
+admin.site.register(College, CollegeAdmin)
+admin.site.register(Student, StudenAdmin)
