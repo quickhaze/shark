@@ -1,3 +1,4 @@
+from statistics import mode
 from django.db import models
 from django.contrib.auth.models import User
 from datetime import datetime
@@ -29,3 +30,34 @@ class Information(models.Model):
 
     def __str__(self):
         return self.git_username + "-" + self.user.username
+
+
+
+class College(models.Model):
+    name=models.CharField(max_length=60)
+    
+    @property
+    def students_count(self): 
+        return Student.objects.filter(course__college=self).count()
+
+    def __str__(self):
+        return self.name
+
+class Course(models.Model):
+    name=models.CharField(max_length=60)
+    college=models.ForeignKey(College, on_delete=models.DO_NOTHING)
+
+    def __str__(self):
+        return self.name
+
+
+class Student(models.Model):
+    name=models.CharField(max_length=60)
+    course=models.ForeignKey(Course, on_delete=models.DO_NOTHING)
+
+
+    def wriit(self):
+        return self.course.college.name
+
+    def __str__(self):
+        return self.name

@@ -21,4 +21,9 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("root/", include("root.urls")),
     path("info/", include("info.urls")),
+    path("peck/", include("peck.urls")),
+    path("caffer/", include("caffer.urls")),
+
+
+    
 ]
