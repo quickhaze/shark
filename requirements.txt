@@ -8,6 +8,7 @@ colorama
 dataclasses
 decorator==5.1.1
 Django==3.2.12
+django-cors-headers==3.11.0
 djangorestframework
 executing==0.8.2
 importlib-metadata==4.8.3
