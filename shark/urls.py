@@ -21,7 +21,7 @@ from django.conf.urls.static import static
 
 
 def hello_view(*args):
-    return HttpResponse("Hello world!")
+    return HttpResponse("Code deploy test!")
 
 
 urlpatterns = [
