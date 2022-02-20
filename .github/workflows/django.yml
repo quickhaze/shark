@@ -72,4 +72,5 @@ jobs:
             --application-name shark \
             --deployment-group-name shark-ec2-git \
             --deployment-config-name CodeDeployDefault.AllAtOnce \
+            --region us-east-2\
             --github-location repository=${{ github.repository }},commitId=${{ github.sha }}
