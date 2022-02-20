@@ -23,6 +23,7 @@ from django.conf.urls.static import static
 def hello_view(*args):
     return HttpResponse("Hello world!")
 
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("hello/", hello_view),
