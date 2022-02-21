@@ -24,21 +24,24 @@ from rest_framework.generics import RetrieveAPIView
 #     queryset = Developer.objects.all()
 #     serializer_class = DeveloperSerializers
 
+
 def RoleList(request):
     role = Role.objects.all()
-    return render(request, "rolelist.html", {"role":role})
+    return render(request, "rolelist.html", {"role": role})
+
 
 def RoleGet(requset, id):
     # import pdb;pdb.set_trace()
     role = Role.objects.get(id=id)
     devloper = role.developer_set.all()
-    return render(requset, "roledetail.html", {"devloper":devloper})
+    return render(requset, "roledetail.html", {"devloper": devloper})
+
 
 def DeveloperList(request):
-    devloper =  Developer.objects.all()
-    return render(request, "devloperlist.html", {"devloper":devloper})  
-   
-def DeveloperGet(request, id):
-    role = Developer.objects.get(user_id = id).role.all()
-    return render(request, "devloperlist.html", {"role":role})
+    devloper = Developer.objects.all()
+    return render(request, "devloperlist.html", {"devloper": devloper})
 
+
+def DeveloperGet(request, id):
+    role = Developer.objects.get(user_id=id).role.all()
+    return render(request, "devloperlist.html", {"role": role})

@@ -16,51 +16,111 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='College',
+            name="College",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=60)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=60)),
             ],
         ),
         migrations.CreateModel(
-            name='Course',
+            name="Course",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=60)),
-                ('college', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='info.college')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=60)),
+                (
+                    "college",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        to="info.college",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Student',
+            name="Student",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=60)),
-                ('course', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='info.course')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=60)),
+                (
+                    "course",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.DO_NOTHING, to="info.course"
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Information',
+            name="Information",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('git_url', models.URLField()),
-                ('git_username', models.CharField(max_length=50)),
-                ('user_adress', models.TextField()),
-                ('phone_number', models.CharField(max_length=12)),
-                ('qualification', models.CharField(max_length=20)),
-                ('technology', models.CharField(max_length=50)),
-                ('project_description', models.TextField()),
-                ('team_leader', models.CharField(max_length=50)),
-                ('team_memeber_names', models.TextField()),
-                ('joining_date', models.DateField(default=datetime.datetime(2022, 2, 19, 11, 30, 13, 11219))),
-                ('separation_date', models.DateField(blank=True, null=True)),
-                ('company_name', models.CharField(max_length=100)),
-                ('experiance', models.IntegerField()),
-                ('user_type', models.CharField(choices=[('student', 'STUDENT'), ('employe', 'EMPLOYE')], max_length=20)),
-                ('user_role', models.CharField(max_length=50)),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("git_url", models.URLField()),
+                ("git_username", models.CharField(max_length=50)),
+                ("user_adress", models.TextField()),
+                ("phone_number", models.CharField(max_length=12)),
+                ("qualification", models.CharField(max_length=20)),
+                ("technology", models.CharField(max_length=50)),
+                ("project_description", models.TextField()),
+                ("team_leader", models.CharField(max_length=50)),
+                ("team_memeber_names", models.TextField()),
+                (
+                    "joining_date",
+                    models.DateField(
+                        default=datetime.datetime(2022, 2, 19, 11, 30, 13, 11219)
+                    ),
+                ),
+                ("separation_date", models.DateField(blank=True, null=True)),
+                ("company_name", models.CharField(max_length=100)),
+                ("experiance", models.IntegerField()),
+                (
+                    "user_type",
+                    models.CharField(
+                        choices=[("student", "STUDENT"), ("employe", "EMPLOYE")],
+                        max_length=20,
+                    ),
+                ),
+                ("user_role", models.CharField(max_length=50)),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
             options={
-                'ordering': ['-id'],
+                "ordering": ["-id"],
             },
         ),
     ]
