@@ -10,3 +10,6 @@ from rest_framework.generics import CreateAPIView
 class InfoCreate(viewsets.ModelViewSet):
     serializer_class = InformationSerailizer
     queryset = Information.objects.all()
+
+
+
