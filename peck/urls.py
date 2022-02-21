@@ -8,8 +8,8 @@ urlpatterns = [
     # path("rolelist/<int:pk>/", RoleGet.as_view()),
     # path("developerlist/", DeveloperList.as_view()),
     # path("developerlist/<int:pk>", DeveloperGet.as_view()),
-    path("rolelist/", views.roleList, name="RoleList"),
-    path("rolelist/<int:id>/", views.roleGet, name="RoleGet"),
-    path("developerlist/", views.developerList, name="DeveloperList"),
-    path("developerlist/<int:id>", views.developerGet, name="DeveloperGet"),
+    path("rolelist/", views.RoleList, name="RoleList"),
+    path("rolelist/<int:id>/", views.RoleGet, name="RoleGet"),
+    path("developerlist/", views.DeveloperList, name="DeveloperList"),
+    path("developerlist/<int:id>", views.DeveloperGet, name="DeveloperGet"),
 ]

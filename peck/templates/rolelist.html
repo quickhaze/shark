@@ -8,7 +8,7 @@
 </head>
 <body>
     {% for r in role %}
-    {{r.id}}
+    {{ r.id }}
     <a href = "{% url 'RoleGet' r.id %}">{{r.role}}</a><br>
     {% endfor %}
 </body>
