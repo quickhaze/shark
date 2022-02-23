@@ -16,6 +16,8 @@ ROLE = (
     ("django_developer", "Django Developer"),
     ("tl", "Team_leader"),
     ("project_manager", "Project Manager"),
+    ("ui/ux", "UI/UX"),
+    ("node.js", "NODE.js"),
 )
 
 

@@ -8,13 +8,6 @@ from .models import *
 class InformationAdmin(admin.ModelAdmin):
     list_display = [
         "user",
-        "git_url",
-        "git_username",
-        "qualification",
-        "technology",
-        "company_name",
-        "experiance",
-        "user_type",
     ]
 
 
