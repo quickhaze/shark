@@ -25,12 +25,10 @@ def hello_view(*args):
 
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("hello/", hello_view),
-    path("root/", include("root.urls")),
-    path("info/", include("info.urls")),
-    path("peck/", include("peck.urls")),
-    path("caffer/", include("caffer.urls")),
+    path("server/admin/", admin.site.urls),
+    path("server/hello/", hello_view),
+    path("server/root/", include("root.urls")),
+    path("server/info/", include("info.urls")),
+    path("server/peck/", include("peck.urls")),
+    path("server/caffer/", include("caffer.urls")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
