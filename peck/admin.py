@@ -4,4 +4,11 @@ from .models import *
 # Register your models here.
 
 admin.site.register(Role)
-admin.site.register(Developer)
+
+
+class DeveloperAdmin(admin.ModelAdmin):
+    autocomplete_fields = ["user"]
+    search_fields = ["user"]
+
+
+admin.site.register(Developer, DeveloperAdmin)

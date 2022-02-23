@@ -43,7 +43,7 @@ class ProjectDeveloper(InitModel):
         ordering = ("created_at",)
 
     def __str__(self) -> str:
-        return str(self.developer.user)
+        return str(self.developer.user) + "-" + str(self.project.name)
 
 
 class RoleInProject(InitModel):
