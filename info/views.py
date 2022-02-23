@@ -43,15 +43,13 @@ class InfoCreate(APIView):
             "separation_date": xl.separation_date,
             "address": xl.address,
         }
-        
+
         if request.data.get("technology"):
             all = request.data["technology"].split(",")
             for i in all:
-
                 xl.technology.add(Technology.objects.get(technology__iexact=i))
         # elif not request.data.get('technology'):
         #     xl.technology.add(Technology.objects.none())
-
         xl.phone_number = request.data.get("phone_number", newdict["phone_number"])
         xl.profile = request.data.get("profile", newdict["profile"])
         xl.experiance = request.data.get("experiance", newdict["experiance"])

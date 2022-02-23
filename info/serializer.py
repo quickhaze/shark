@@ -5,6 +5,8 @@ from django.contrib.auth.models import User
 
 
 class InformationSerailizer(serializers.ModelSerializer):
+    user = serializers.CharField(source="user.username")
+
     class Meta:
         model = Information
         fields = [

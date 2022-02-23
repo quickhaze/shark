@@ -41,9 +41,6 @@ class UserGet(APIView):
             raise Http404
 
     def get(self, request, username):
-        import pdb
-
-        pdb.set_trace()
         data = self.get_object(username)
         serializer = UserDetails(data)
         return Response(serializer.data)
