@@ -8,6 +8,7 @@ import FeaturedProject from './views/components/project/project.jsx'
 
 import Home from './views/components/home/home.jsx'
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Layout from './views/components/home/Layout.jsx';
 
 function App() {
   return (
@@ -18,6 +19,9 @@ function App() {
           <Route path='/userinfo/' element={<FeaturedProjects/>} />
         </Routes>
       </BrowserRouter>
+
+      
+
     </div>
   );
 }

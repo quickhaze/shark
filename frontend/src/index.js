@@ -3,11 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Layout from './views/components/home/Layout';
+import UserProfile from './views/components/project/UserProfile';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <>
+    {/* <App /> */}
+    <Layout />
+    {/* <UserProfile /> */}
+
+  </>,
   document.getElementById('root')
 );
 
