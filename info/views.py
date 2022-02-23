@@ -1,4 +1,5 @@
 from functools import partial
+
 # from turtle import pd
 from django.http import Http404
 from django.shortcuts import render

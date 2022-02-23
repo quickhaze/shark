@@ -13,49 +13,111 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('root', '0001_initial'),
+        ("root", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='College',
+            name="College",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=60)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=60)),
             ],
         ),
         migrations.CreateModel(
-            name='Course',
+            name="Course",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=60)),
-                ('college', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='info.college')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=60)),
+                (
+                    "college",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        to="info.college",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Student',
+            name="Student",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=60)),
-                ('course', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='info.course')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=60)),
+                (
+                    "course",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.DO_NOTHING, to="info.course"
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Information',
+            name="Information",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('profile', models.FileField(blank=True, null=True, upload_to='profile')),
-                ('experiance', models.IntegerField(blank=True, null=True)),
-                ('qualification', models.TextField(blank=True, null=True)),
-                ('phone_number', models.CharField(max_length=12, validators=[info.models.validate_phone])),
-                ('joining_date', models.DateField(default=datetime.datetime(2022, 2, 23, 20, 28, 19, 224600))),
-                ('separation_date', models.DateField(blank=True, null=True)),
-                ('address', models.TextField(blank=True, null=True)),
-                ('technology', models.ManyToManyField(to='root.Technology')),
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "profile",
+                    models.FileField(blank=True, null=True, upload_to="profile"),
+                ),
+                ("experiance", models.IntegerField(blank=True, null=True)),
+                ("qualification", models.TextField(blank=True, null=True)),
+                (
+                    "phone_number",
+                    models.CharField(
+                        max_length=12, validators=[info.models.validate_phone]
+                    ),
+                ),
+                (
+                    "joining_date",
+                    models.DateField(
+                        default=datetime.datetime(2022, 2, 23, 20, 28, 19, 224600)
+                    ),
+                ),
+                ("separation_date", models.DateField(blank=True, null=True)),
+                ("address", models.TextField(blank=True, null=True)),
+                ("technology", models.ManyToManyField(to="root.Technology")),
+                (
+                    "user",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
             options={
-                'ordering': ['-id'],
+                "ordering": ["-id"],
             },
         ),
     ]
