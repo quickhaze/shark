@@ -43,9 +43,7 @@ class InfoCreate(APIView):
             "separation_date": xl.separation_date,
             "address": xl.address,
         }
-        import pdb
-
-        pdb.set_trace()
+        
         if request.data.get("technology"):
             all = request.data["technology"].split(",")
             for i in all:
