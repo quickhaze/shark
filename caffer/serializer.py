@@ -2,7 +2,6 @@ from email.policy import default
 from pyexpat import model
 import black
 from django.forms import Field
-from importlib_metadata import requires
 from rest_framework import serializers
 from .models import *
 from peck.models import *
