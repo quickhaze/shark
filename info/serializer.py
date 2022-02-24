@@ -1,16 +1,22 @@
+from asyncore import read
 from pyexpat import model
 from rest_framework import serializers
+
+from root.models import Technology
 from .models import Information
 from django.contrib.auth.models import User
 
 
-class InformationSerailizer(serializers.ModelSerializer):
-    user = serializers.CharField(source="user.username")
+class UserSerailizerEmailUsername(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ["email", "username"]
 
+
+class InformationSerailizer(serializers.ModelSerializer):
     class Meta:
         model = Information
         fields = [
-            "profile",
             "technology",
             "experiance",
             "qualification",
@@ -20,14 +26,28 @@ class InformationSerailizer(serializers.ModelSerializer):
             "address",
         ]
 
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        l = []
+        for i in data["technology"]:
+            try:
+                l.append(Technology.objects.get(id=i).technology)
+            except Technology.DoesNotExist:
+                raise serializers.ValidationError(
+                    {"Technology": f"Technology {Technology} does not exixt"}
+                )
 
-# class UserSerailizer(serializers.ModelSerializer):
-#     class Meta:
-#         model = User
-#         fields = ["username", "first_name", "last_name"]
+        data["technology"] = l
+        return data
+
+
+class InformationProfileSerailizer(serializers.ModelSerializer):
+    class Meta:
+        model = Information
+        fields = ["profile"]
 
 
 class UserSerailizer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ["username", "first_name", "last_name"]
+        fields = ["first_name", "last_name"]
