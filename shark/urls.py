@@ -31,4 +31,6 @@ urlpatterns = [
     path("server/info/", include("info.urls")),
     path("server/peck/", include("peck.urls")),
     path("server/caffer/", include("caffer.urls")),
-] + static(f"server{settings.STATIC_URL}", document_root=f"server{settings.STATIC_ROOT}")
+] + static(
+    f"server{settings.STATIC_URL}", document_root=f"server{settings.STATIC_ROOT}"
+)
