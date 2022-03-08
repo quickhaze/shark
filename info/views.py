@@ -18,6 +18,9 @@ class InfoCreate(APIView):
         return Response({"user": serializer.data, "profile": serializer1.data})
 
     def post(self, request):
+        import pdb
+
+        pdb.set_trace()
         new_data = request.data.copy()
         serializer1 = UserSerailizer(data=new_data, instance=request.user, partial=True)
         serializer = InformationSerailizer(

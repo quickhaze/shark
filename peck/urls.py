@@ -5,7 +5,7 @@ from peck import views
 
 router = routers.DefaultRouter()
 router.register("developer", Developer_add, basename="developer_add")
-router.register("role", Role_add, basename="developer_add")
+router.register("role", Role_add, basename="Role_add")
 
 
 urlpatterns = [
