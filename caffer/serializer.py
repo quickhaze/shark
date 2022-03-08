@@ -1,6 +1,6 @@
 from email.policy import default
 from pyexpat import model
-import black
+
 from django.forms import Field
 from rest_framework import serializers
 from .models import *
@@ -73,12 +73,12 @@ class UserRegisterSerializers(serializers.ModelSerializer):
 
     def validate(self, attrs):
         data = super().validate(attrs)
-
         if data["password1"] != data["password2"]:
             raise serializers.ValidationError("password not match")
         return data
 
     def create(self, validated_data):
+
         us = User.objects.create(
             email=self.validated_data["email"],
             username=self.validated_data["username"],
@@ -160,6 +160,8 @@ class RoleInProjectTestSerializers(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         data = super().to_representation(instance)
+        print("__", data)
+
         data["start_date"] = RoleInProject.objects.get(id=instance.id).start_date
         data["end_date"] = RoleInProject.objects.get(id=instance.id).end_date
         return data
