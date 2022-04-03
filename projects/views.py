@@ -22,7 +22,7 @@ class ProjectsView(LoginRequiredMixin, View):
             return render(request, "project-detail.html", ctx)
         projects = Project.objects.all()
         if not request.user.is_superuser:
-            projects = request.user.projects.projects.all()
+            projects = request.user.projects.projects.all() if  request.user.projects else []
         ctx = {"projects": projects}
         return render(request, "projects.html", ctx)
 
