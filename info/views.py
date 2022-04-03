@@ -1,7 +1,10 @@
+from dataclasses import fields
 from functools import partial
+from typing import Dict
 from django.http import Http404
-from django.shortcuts import render
-from .models import Information
+from django.shortcuts import redirect, render
+from django.urls import reverse
+from .models import UserInformation
 from .serializer import *
 from rest_framework import viewsets
 from rest_framework.views import APIView
@@ -12,16 +15,16 @@ from root.models import Technology
 class InfoCreate(APIView):
     def get(self, request):
         data = User.objects.get(id=request.user.id)
-        data1 = Information.objects.get(id=request.user.information.id)
+        data1 = UserInformation.objects.get(id=request.user.UserInformation.id)
         serializer = UserSerailizer(data)
-        serializer1 = InformationSerailizer(data1)
+        serializer1 = UserInformationSerailizer(data1)
         return Response({"user": serializer.data, "profile": serializer1.data})
 
     def post(self, request):
         new_data = request.data.copy()
         serializer1 = UserSerailizer(data=new_data, instance=request.user, partial=True)
-        serializer = InformationSerailizer(
-            data=new_data, instance=request.user.information, partial=True
+        serializer = UserInformationSerailizer(
+            data=new_data, instance=request.user.UserInformation, partial=True
         )
         if serializer.is_valid(raise_exception=True) and serializer1.is_valid(
             raise_exception=True
@@ -43,13 +46,13 @@ class InfoCreate(APIView):
 
 class ProfileCreate(APIView):
     def get(self, request):
-        data = Information.objects.get(id=request.user.information.id)
-        serializer = InformationProfileSerailizer(data)
+        data = UserInformation.objects.get(id=request.user.UserInformation.id)
+        serializer = UserInformationProfileSerailizer(data)
         return Response(serializer.data)
 
     def post(self, request):
-        serializer = InformationProfileSerailizer(
-            data=request.data, instance=request.user.information
+        serializer = UserInformationProfileSerailizer(
+            data=request.data, instance=request.user.UserInformation
         )
         if serializer.is_valid(raise_exception=True):
             serializer.save()
@@ -61,3 +64,26 @@ class EmailUsernameOnly(APIView):
         data = User.objects.get(id=request.user.id)
         serializer = UserSerailizerEmailUsername(data)
         return Response(serializer.data, status=201)
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import UpdateView, CreateView
+# from django.views.generic
+from .models import Documents
+from django.views import View
+from .forms import DocumetsForm
+Any = object
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+class Profile(LoginRequiredMixin, DetailView):
+    model = User
+    template_name = 'user-profile.html'
+
+    # def get_context_data(self, **kwargs: Any):
+    #     ctx = super().get_context_data(**kwargs)
+    #     return ctx
+
+class DocUpload(View):
+    def post(self, request,*args, **kwargs):
+        form = DocumetsForm(request.POST, request.FILES)
+        if form.is_valid():
+            Documents.objects.create(user_info = request.user.userinformation, **form.cleaned_data)
+        return redirect(reverse('root:index'))

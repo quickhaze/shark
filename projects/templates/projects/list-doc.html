@@ -1,0 +1,27 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">URL</th>
+            <th scope="col">Username </th>
+            <th scope="col">Email </th>
+            <th scope="col">Password </th>
+            <th scope="col">File </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for obj in project.projectdocument_set.all %}
+        <tr>
+            <td>{% if obj.name %} {{obj.name }} {% else %} - {% endif %}</td>
+            <td>{% if obj.url %} {{obj.url }} {% else %} - {% endif %}</td>
+            <td>{% if obj.username %} {{obj.username }} {% else %} - {% endif %}</td>
+            <td>{% if obj.email %} {{obj.email }} {% else %} - {% endif %}</td>
+            <td>{% if obj.password %} {{obj.password }} {% else %} - {% endif %}</td>
+            <td>{% if obj.file %} <a href="{{ obj.file.url }}" target="_blank">
+                    View
+                </a>
+                {% else %} - {% endif %}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

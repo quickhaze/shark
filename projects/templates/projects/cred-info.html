@@ -1,0 +1,29 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+          <th scope="col">Category</th>
+          <th scope="col">Credential Type</th>
+          <th scope="col">URL</th>
+          <th scope="col">Username </th>
+          <th scope="col">Email </th>
+          <th scope="col">Password </th>
+          <th scope="col">File </th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for obj in project.credentials_set.all %}
+        <tr>
+          <td>{{obj.category }}</td>
+          <td>{{obj.credential_type }}</td>
+          <td>{{obj.url }}</td>
+          <td>{{obj.username }}</td>
+          <td>{{obj.email }}</td>
+          <td>{{obj.password }}</td>
+          <td>{% if obj.file %} <a href="{{ obj.file.url }}" target="_blank">
+              View
+          </a>
+          {% else %} - {% endif %}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+  </table>

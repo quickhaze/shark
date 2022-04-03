@@ -1,0 +1,24 @@
+    <table class="table table-striped">
+        <thead>
+            <tr>
+              <th scope="col">Repo Type</th>
+              <th scope="col">Auth Type</th>
+              <th scope="col">URL</th>
+              <th scope="col">Username </th>
+              <th scope="col">Email </th>
+              <th scope="col">Password </th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for obj in project.repository_set.all %}
+            <tr>
+              <td>{{obj.repo_type }}</td>
+              <td>{{obj.auth_type }}</td>
+              <td>{{obj.url }}</td>
+              <td>{{obj.username }}</td>
+              <td>{{obj.email }}</td>
+              <td>{{obj.password }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+      </table>

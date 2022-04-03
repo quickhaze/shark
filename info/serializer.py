@@ -3,7 +3,7 @@ from pyexpat import model
 from rest_framework import serializers
 
 from root.models import Technology
-from .models import Information
+from .models import UserInformation
 from django.contrib.auth.models import User
 
 
@@ -13,9 +13,9 @@ class UserSerailizerEmailUsername(serializers.ModelSerializer):
         fields = ["email", "username"]
 
 
-class InformationSerailizer(serializers.ModelSerializer):
+class UserInformationSerailizer(serializers.ModelSerializer):
     class Meta:
-        model = Information
+        model = UserInformation
         fields = [
             "technology",
             "experiance",
@@ -41,9 +41,9 @@ class InformationSerailizer(serializers.ModelSerializer):
         return data
 
 
-class InformationProfileSerailizer(serializers.ModelSerializer):
+class UserInformationProfileSerailizer(serializers.ModelSerializer):
     class Meta:
-        model = Information
+        model = UserInformation
         fields = ["profile"]
 
 

@@ -4,23 +4,20 @@ from .models import *
 # Register your models here.
 
 
-@admin.register(Information)
+@admin.register(UserInformation)
 class InformationAdmin(admin.ModelAdmin):
     list_display = [
         "user",
     ]
 
 
-admin.site.register(Course)
+@admin.register(Documents)
+class InformationAdmin(admin.ModelAdmin):
+    list_display = [
+        "user_info",'doc'
+    ]
 
+@admin.register(Address)
+class InformationAdmin(admin.ModelAdmin): ...
 
-class StudenAdmin(admin.ModelAdmin):
-    list_display = ["name", "course", "wriit"]
-
-
-class CollegeAdmin(admin.ModelAdmin):
-    list_display = ["name", "students_count"]
-
-
-admin.site.register(College, CollegeAdmin)
-admin.site.register(Student, StudenAdmin)
+admin.site.register(DailyUpdate)

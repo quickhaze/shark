@@ -1,0 +1,36 @@
+
+
+
+<button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#add-user-doc"
+    aria-expanded="false" aria-controls="collapseExample">
+    Add Documents
+</button>
+
+<div class="modal fade" id="add-user-doc" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Project Credentials Information</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body ">
+                <div class="" style="margin-left: 33%;">
+                    <form method="post" action="{% url 'info:doc' %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <label for="actual-btn1" class="label-document-uploadx"> Type of file </label>
+                        <select id="actual-btn1" name="name">
+                            <option>ID</option>
+                            <option>Address</option>
+                        </select>
+                        <label for="actual-btn" class="label-document-upload"> upload documents </label>
+                        <input type="file" id="actual-btn" name="doc" hidden />
+                </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+        </form>
+    </div>
+        </div>
+    </div>
+</div>

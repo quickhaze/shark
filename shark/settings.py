@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "peck",
     "root",
     "info",
+    "projects",
     "rest_framework",
     "corsheaders",
 ]
@@ -147,3 +148,7 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.BasicAuthentication",
     ],
 }
+
+LOGIN_REDIRECT_URL = '/server/'
+LOGIN_URL = '/server/login/'
+LOGOUT_REDIRECT_URL = '/server/page/'

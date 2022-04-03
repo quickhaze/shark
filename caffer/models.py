@@ -51,7 +51,7 @@ class RoleInProject(InitModel):
 
     projectdeveloper = models.ForeignKey(ProjectDeveloper, on_delete=models.PROTECT)
     role = models.ForeignKey(to="peck.role", on_delete=models.PROTECT)
-    start_date = models.DateField(default=datetime.now())
+    start_date = models.DateField(default=datetime.now)
     end_date = models.DateField(blank=True, null=True)
 
     class Meta:

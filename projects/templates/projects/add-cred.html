@@ -1,0 +1,61 @@
+<button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#add-project-credentials"
+    aria-expanded="false" aria-controls="collapseExample">
+    Add More Credentials
+</button>
+
+<div class="modal fade" id="add-project-credentials" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Project Credentials Information</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body ">
+                <form method="post" action="{% url 'projects:add-cred' project.id %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% for field in credentials_form %}
+                    <div class="col">
+                        {% if field.field.widget.input_type == "select" %}
+                        <div class="form-group focused">
+                            <label class="form-control-label" for="{{ field.id_for_label }}">
+                                {{ field.label}}</label>
+                            <select type={{field.widget.input_type}} id="{{ field.id_for_label }}"
+                                name="{{field.html_name}}" class="form-control form-control-alternative"
+                                placeholder="Username" value=" {{object.username}}">
+                                {% for choice in field.field.choices %}
+                                <option value="{{choice.0}}">
+                                    {{choice.1}}
+                                </option>
+                                {% endfor %}
+                            </select>
+                            {% if field.help_text %}
+                            <span class="help">{{ field.help_text|safe }}</span>
+                            {% if field.html_name == "category" %}
+                            <span class="help"> <a href="{% url 'projects:category' %}"> Add category</a></span>
+                            {% endif %}
+                            {% endif %}
+                        </div>
+                        {% else %}
+                        <div class="form-group focused">
+                            <label class="form-control-label" for="{{ field.id_for_label }}">
+                                {{ field.label}}
+                            </label>
+                            <input type={{field.field.widget.input_type}} id="{{ field.id_for_label }}"
+                                name="{{field.html_name}}" class="form-control form-control-alternative"
+                                placeholder="Username" value=" {{object.username}}">
+                                {% if field.help_text %}
+                                <p class="help">{{ field.help_text|safe }}</p>
+                                {% endif %}
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+        </form>
+    </div>
+        </div>
+    </div>
+</div>
