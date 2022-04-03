@@ -13,11 +13,12 @@ class InformationAdmin(admin.ModelAdmin):
 
 @admin.register(Documents)
 class InformationAdmin(admin.ModelAdmin):
-    list_display = [
-        "user_info",'doc'
-    ]
+    list_display = ["user_info", "doc"]
+
 
 @admin.register(Address)
-class InformationAdmin(admin.ModelAdmin): ...
+class InformationAdmin(admin.ModelAdmin):
+    ...
+
 
 admin.site.register(DailyUpdate)

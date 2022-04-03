@@ -12,66 +12,153 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('projects', '0001_initial'),
-        ('root', '0001_initial'),
+        ("projects", "0001_initial"),
+        ("root", "0001_initial"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='UserInformation',
+            name="UserInformation",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('image', models.FileField(blank=True, default='profile_image/viber.png', null=True, upload_to='profile_image')),
-                ('joining_date', models.DateField(default=datetime.datetime.now)),
-                ('separation_date', models.DateField(blank=True, null=True)),
-                ('experience', models.IntegerField(blank=True, null=True)),
-                ('qualification', models.TextField(blank=True, null=True)),
-                ('bio', models.TextField(blank=True, null=True)),
-                ('dob', models.DateField(blank=True, null=True)),
-                ('position', models.CharField(blank=True, max_length=200, null=True)),
-                ('about_me', models.TextField(default='About me')),
-                ('technologies', models.ManyToManyField(to='root.technology')),
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "image",
+                    models.FileField(
+                        blank=True,
+                        default="profile_image/viber.png",
+                        null=True,
+                        upload_to="profile_image",
+                    ),
+                ),
+                ("joining_date", models.DateField(default=datetime.datetime.now)),
+                ("separation_date", models.DateField(blank=True, null=True)),
+                ("experience", models.IntegerField(blank=True, null=True)),
+                ("qualification", models.TextField(blank=True, null=True)),
+                ("bio", models.TextField(blank=True, null=True)),
+                ("dob", models.DateField(blank=True, null=True)),
+                ("position", models.CharField(blank=True, max_length=200, null=True)),
+                ("about_me", models.TextField(default="About me")),
+                ("technologies", models.ManyToManyField(to="root.technology")),
+                (
+                    "user",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
             options={
-                'ordering': ['-id'],
+                "ordering": ["-id"],
             },
         ),
         migrations.CreateModel(
-            name='Documents',
+            name="Documents",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(blank=True, max_length=50, null=True)),
-                ('doc', models.FileField(blank=True, null=True, upload_to='doc')),
-                ('user_info', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='info.userinformation')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(blank=True, max_length=50, null=True)),
+                ("doc", models.FileField(blank=True, null=True, upload_to="doc")),
+                (
+                    "user_info",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="info.userinformation",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='DailyUpdate',
+            name="DailyUpdate",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('date', models.DateField(blank=True, null=True)),
-                ('detail', models.TextField()),
-                ('project', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='daily_updates', to='projects.project')),
-                ('user', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='daily_updates', to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                ("date", models.DateField(blank=True, null=True)),
+                ("detail", models.TextField()),
+                (
+                    "project",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="daily_updates",
+                        to="projects.project",
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="daily_updates",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
             options={
-                'ordering': ('date',),
+                "ordering": ("date",),
             },
         ),
         migrations.CreateModel(
-            name='Address',
+            name="Address",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('address_line_1', models.CharField(blank=True, max_length=500, null=True)),
-                ('address_line_2', models.CharField(blank=True, max_length=500, null=True)),
-                ('city', models.CharField(blank=True, max_length=50, null=True)),
-                ('zip_code', models.IntegerField()),
-                ('phone_number', models.CharField(max_length=16, validators=[info.models.validate_phone])),
-                ('user_info', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to='info.userinformation')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "address_line_1",
+                    models.CharField(blank=True, max_length=500, null=True),
+                ),
+                (
+                    "address_line_2",
+                    models.CharField(blank=True, max_length=500, null=True),
+                ),
+                ("city", models.CharField(blank=True, max_length=50, null=True)),
+                ("zip_code", models.IntegerField()),
+                (
+                    "phone_number",
+                    models.CharField(
+                        max_length=16, validators=[info.models.validate_phone]
+                    ),
+                ),
+                (
+                    "user_info",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="info.userinformation",
+                    ),
+                ),
             ],
         ),
     ]

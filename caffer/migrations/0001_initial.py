@@ -10,59 +10,125 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('peck', '0001_initial'),
+        ("peck", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Project',
+            name="Project",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('name', models.CharField(help_text='The name of the project', max_length=200)),
-                ('cracker', models.ForeignKey(help_text='The name of the developer who cracked the interview', max_length=200, on_delete=django.db.models.deletion.PROTECT, related_name='project_cracker', to='peck.developer')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                (
+                    "name",
+                    models.CharField(
+                        help_text="The name of the project", max_length=200
+                    ),
+                ),
+                (
+                    "cracker",
+                    models.ForeignKey(
+                        help_text="The name of the developer who cracked the interview",
+                        max_length=200,
+                        on_delete=django.db.models.deletion.PROTECT,
+                        related_name="project_cracker",
+                        to="peck.developer",
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
         migrations.CreateModel(
-            name='ProjectDeveloper',
+            name="ProjectDeveloper",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('developer', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='peck.developer')),
-                ('project', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='caffer.project')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                (
+                    "developer",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT, to="peck.developer"
+                    ),
+                ),
+                (
+                    "project",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT, to="caffer.project"
+                    ),
+                ),
             ],
             options={
-                'ordering': ('created_at',),
+                "ordering": ("created_at",),
             },
         ),
         migrations.CreateModel(
-            name='RoleInProject',
+            name="RoleInProject",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('start_date', models.DateField(default=datetime.datetime.now)),
-                ('end_date', models.DateField(blank=True, null=True)),
-                ('projectdeveloper', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='caffer.projectdeveloper')),
-                ('role', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='peck.role')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                ("start_date", models.DateField(default=datetime.datetime.now)),
+                ("end_date", models.DateField(blank=True, null=True)),
+                (
+                    "projectdeveloper",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT,
+                        to="caffer.projectdeveloper",
+                    ),
+                ),
+                (
+                    "role",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT, to="peck.role"
+                    ),
+                ),
             ],
             options={
-                'ordering': ('created_at',),
+                "ordering": ("created_at",),
             },
         ),
         migrations.AddField(
-            model_name='projectdeveloper',
-            name='role_in_project',
-            field=models.ManyToManyField(through='caffer.RoleInProject', to='peck.role'),
+            model_name="projectdeveloper",
+            name="role_in_project",
+            field=models.ManyToManyField(
+                through="caffer.RoleInProject", to="peck.role"
+            ),
         ),
         migrations.AddField(
-            model_name='project',
-            name='developer',
-            field=models.ManyToManyField(help_text='The name of the developers contributed to the project on the project', through='caffer.ProjectDeveloper', to='peck.developer', verbose_name='developers'),
+            model_name="project",
+            name="developer",
+            field=models.ManyToManyField(
+                help_text="The name of the developers contributed to the project on the project",
+                through="caffer.ProjectDeveloper",
+                to="peck.developer",
+                verbose_name="developers",
+            ),
         ),
     ]

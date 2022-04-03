@@ -11,22 +11,28 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <title>Project</title>
+    <style>
+        .nav-item{
+            margin-left: 2px;
+            padding-left: 3px;
+        }
+    </style>
 </head>
 
 <body>
     <div class="nav">
         {% if request.user.is_authenticated == True %}
         <span class="nav-item">
-            <button>
-                {{request.user}}
-            </button>
+            <a href="#" class="btn btn-secondary"><i class="material-icons"></i> <span>{{request.user}}</span></a>
         </span>
         <span class="nav-item">
-            <button>
-                <a href="{% url 'root:logout' %}">
-                    Logout
-                </a>
-            </button>
+            <a href="{% url 'projects:list' %}" class="btn btn-secondary"><i class="material-icons"></i> <span>Projects</span></a>
+        </span>
+        <span class="nav-item">
+            <a href="{% url 'root:index' %}" class="btn btn-secondary"><i class="material-icons"></i> <span>Users</span></a>
+        </span>
+        <span class="nav-item">
+            <a href="{% url 'root:logout' %}" class="btn btn-secondary"><i class="material-icons"></i> <span>Log Out</span></a>
         </span>
         {% else %}
         <a href="{% url 'root:login' %}">

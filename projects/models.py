@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse
 from root.models import InitModel
 from django.contrib.auth.models import User
+
 # Create your models here.
 
 REPO_TYPE = (
@@ -85,7 +86,7 @@ class Credentials(BaseProject):
     def __str__(self) -> str:
         return f"{self.credential_type}"
 
- 
+
 class ProjectDocument(BaseProject):
     name = models.CharField(max_length=50)
     url = models.URLField(blank=True, null=True)
@@ -106,7 +107,9 @@ class Extra(InitModel):
 
 
 class AssignedProject(InitModel):
-    user = models.OneToOneField(User, on_delete=models.SET_NULL, null=True, blank=True, related_name="projects")
+    user = models.OneToOneField(
+        User, on_delete=models.SET_NULL, null=True, blank=True, related_name="projects"
+    )
     projects = models.ManyToManyField(Project, blank=True)
 
     def __str__(self) -> str:

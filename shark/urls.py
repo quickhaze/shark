@@ -24,14 +24,16 @@ def hello_view(*args):
     return HttpResponse("Code deploy sucessfull Confirmation")
 
 
-urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("", include("root.urls")),
-    path("hello/", hello_view),
-    path("info/", include("info.urls")),
-    path("projects/", include("projects.urls")),
-    path("peck/", include("peck.urls")),
-    path("caffer/", include("caffer.urls")),
-] + static(
-    f"{settings.STATIC_URL}", document_root=f"{settings.STATIC_ROOT}"
-)  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns = (
+    [
+        path("admin/", admin.site.urls),
+        path("", include("root.urls")),
+        path("hello/", hello_view),
+        path("info/", include("info.urls")),
+        path("projects/", include("projects.urls")),
+        path("peck/", include("peck.urls")),
+        path("caffer/", include("caffer.urls")),
+    ]
+    + static(f"{settings.STATIC_URL}", document_root=f"{settings.STATIC_ROOT}")
+    + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+)

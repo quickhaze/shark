@@ -7,6 +7,7 @@ from root.models import InitModel, Technology
 from django.core.exceptions import ValidationError
 from datetime import date
 from projects.models import Project
+
 # Create your models here.
 
 
@@ -18,7 +19,12 @@ def validate_phone(phone_number):
 
 class UserInformation(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = models.FileField(upload_to="profile_image", null=True, blank=True, default="profile_image/viber.png")
+    image = models.FileField(
+        upload_to="profile_image",
+        null=True,
+        blank=True,
+        default="profile_image/viber.png",
+    )
     joining_date = models.DateField(default=datetime.now)
     separation_date = models.DateField(null=True, blank=True)
     technologies = models.ManyToManyField(Technology)
@@ -40,7 +46,7 @@ class Address(models.Model):
     user_info = models.OneToOneField(UserInformation, on_delete=models.CASCADE)
     address_line_1 = models.CharField(max_length=500, null=True, blank=True)
     address_line_2 = models.CharField(max_length=500, null=True, blank=True)
-    city  = models.CharField(max_length=50, null=True, blank=True)
+    city = models.CharField(max_length=50, null=True, blank=True)
     zip_code = models.IntegerField()
     phone_number = models.CharField(max_length=16, validators=[validate_phone])
 
@@ -50,7 +56,7 @@ class Address(models.Model):
 
 class Documents(models.Model):
     user_info = models.ForeignKey(UserInformation, on_delete=models.CASCADE)
-    name  = models.CharField(max_length=50, null=True, blank=True)
+    name = models.CharField(max_length=50, null=True, blank=True)
     doc = models.FileField(upload_to="doc", null=True, blank=True)
 
     def __str__(self):
@@ -59,9 +65,21 @@ class Documents(models.Model):
 
 class DailyUpdate(InitModel):
     date = models.DateField(blank=True, null=True)
-    project = models.ForeignKey(Project,blank=True, null=True, on_delete=models.SET_NULL,related_name='daily_updates')
-    user = models.ForeignKey(User, blank=True, null=True, on_delete=models.SET_NULL,related_name='daily_updates')
-    detail  = models.TextField()
+    project = models.ForeignKey(
+        Project,
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name="daily_updates",
+    )
+    user = models.ForeignKey(
+        User,
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name="daily_updates",
+    )
+    detail = models.TextField()
 
     class Meta:
         ordering = ("date",)

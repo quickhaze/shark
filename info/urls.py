@@ -12,6 +12,5 @@ urlpatterns = [
     path("email-user/", EmailUsernameOnly.as_view()),
     path("profile/<int:pk>/", Profile.as_view(), name="profile"),
     path("upload", DocUpload.as_view(), name="doc"),
-    
     # path("", include(router.urls)),
 ]
