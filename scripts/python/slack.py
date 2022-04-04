@@ -13,7 +13,7 @@ from urllib.request import urlretrieve, urlcleanup
 
 # WebClient instantiates a client that can call API methods
 # When using Bolt, you can use either `app.client` or the `client` passed to listeners.
-client = WebClient(token="xoxb-2023650115936-3329529215958-XT3inuuLhtRjHQbEH9brW8h9")
+client = WebClient(token="xoxb-2023650115936-3329529215958-W14C57fShtSPqLA6YAsnFLJg")
 logger = logging.getLogger(__name__)
 # Store conversation history
 conversation_history = []
@@ -74,8 +74,10 @@ for x in conversation_history:
     profile = user.userinformation 
     save_profile_image(result.data['user']['profile']['image_24'], profile)
 
-    DailyUpdate.objects.create(
-        date=date.fromtimestamp(float(x['ts'])),
-        user = user,
-        detail = x['text'],
+    daily_update, created = DailyUpdate.objects.get_or_create(
+        chat_id = x["client_msg_id"]
         )
+    daily_update.date=date.fromtimestamp(float(x['ts']))
+    daily_update.user = user
+    daily_update.detail = x['text']
+    daily_update.save()
