@@ -262,6 +262,14 @@
 
                     </tbody>
                 </table>
+                {% if request.user.is_superuser %}
+                <button>
+                    <a href="/admin/projects/project/add/" target="_blank">
+                        Add Project
+                    </a>
+                   
+                </button>
+                {% endif %}
             </div>
         </div>
     </div>

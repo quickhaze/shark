@@ -9,6 +9,7 @@ ipython = "*"
 black = "*"
 djangorestframework = "*"
 django-cors-headers = "*"
+slack-sdk = "*"
 
 [dev-packages]
 black = "*"

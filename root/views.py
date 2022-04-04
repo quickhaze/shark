@@ -11,7 +11,8 @@ BASE_URL = "127.0.0.1:8000/root/"
 class UserListView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         users = User.objects.all()
-        paginator = Paginator(users, 3)
+        # import pdb; pdb.set_trace()
+        paginator = Paginator(users, 10)
         page_number = request.GET.get("page")
         page_obj = paginator.get_page(page_number)
         ctx = {"page_obj": page_obj}

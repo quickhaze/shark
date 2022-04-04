@@ -249,7 +249,14 @@
                                
                                 <td>{{user.id}}</td>
                                 <td><a href="{% url 'info:profile' user.id %}" target="_blank"><img src="{{user.userinformation.image.url}}" class="avatar"
-                                            alt="Avatar" width="10" height="12"> {{user.username}}</a></td>
+                                            alt="Avatar" width="10" height="12">
+                                            {% if user.get_full_name %}
+                                            {{user.get_full_name}}
+                                            {% else %}
+                                            {{user.username}}
+                                            {% endif %}
+                                        
+                                        </a></td>
                                 <td>{{user.userinformation.joining_date}}</td>
                                 <td>{{user.userinformation.role}}</td>
                                 <td>{% if user.is_active == True %}<span class="status text-success"> &bull; </span>
