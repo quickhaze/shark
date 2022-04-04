@@ -2111,7 +2111,6 @@
                     <div class="col-lg-7 col-md-10">
                         <h1 class="display-2 text-white">About {{object.username}}</h1>
                         <p class="text-white mt-0 mb-5">{{object.userinformation.about_me}}</p>
-                        <a href="#!" class="btn btn-info">Edit profile</a>
                     </div>
                 </div>
             </div>
@@ -2142,32 +2141,45 @@
                                     <div class="card-profile-stats d-flex justify-content-center mt-md-5">
                                         <div>
                                             <span class="heading">22</span>
-                                            <span class="description">Friends</span>
+                                            <span class="description">Projects</span>
                                         </div>
                                         <div>
                                             <span class="heading">10</span>
-                                            <span class="description">Photos</span>
-                                        </div>
-                                        <div>
-                                            <span class="heading">89</span>
-                                            <span class="description">Comments</span>
+                                            <span class="description">Technologies</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="text-center">
                                 <h3>
-                                    {{object.username}}<span class="font-weight-light">,{% if request.user == object %}
-                                        {{ object.userinformation.dob|timesince }} {% endif %}</span>
+                                    {{object.username}}<span class="font-weight-light">,
+                                        {% if request.user == object %}
+                                        {% if  object.userinformation.dob %}
+                                        {{ object.userinformation.dob|timesince }}
+                                        {% endif %}
+                                        {% endif %}
+                                    </span>
                                 </h3>
                                 <div class="h5 font-weight-300">
-                                    <i class="ni location_pin mr-2"></i>{{object.userinformation.address.city}}
+                                    <i class="ni location_pin mr-2"></i>
+                                    {% if object.userinformation.address.city %}
+                                    {{object.userinformation.address.city}}
+                                    {% endif %}
+
                                 </div>
                                 <div class="h5 mt-4">
-                                    <i class="ni business_briefcase-24 mr-2"></i>{{object.userinformation.position}}
+                                    <i class="ni business_briefcase-24 mr-2"></i>
+                                    {% if object.userinformation.position %}
+                                    {{object.userinformation.position}}
+                                    {% endif %}
+
                                 </div>
                                 <div>
-                                    <i class="ni education_hat mr-2"></i>{{object.userinformation.qualification}}
+                                    <i class="ni education_hat mr-2"></i>
+                                    {% if object.userinformation.qualification %}
+                                    {{object.userinformation.qualification}}
+                                    {% endif %}
+
                                 </div>
                                 <hr class="my-4">
                             </div>
@@ -2214,8 +2226,8 @@
                                 <div class="col-8">
                                     <h3 class="mb-0">User account</h3>
                                 </div>
-                                <div class="col-4 text-right">
-                                    <a href="#!" class="btn btn-sm btn-primary">Settings</a>
+                                <div class="col-4 text-right" id="edit-userinfo">
+                                    <a href="#!" class="btn btn-sm btn-primary {% if request.user == object or request.user.is_superuser %} {% else %} disabled {% endif %}">Edit</a>
                                 </div>
                             </div>
                         </div>
@@ -2227,7 +2239,7 @@
                                         <div class="col-lg-6">
                                             <div class="form-group focused">
                                                 <label class="form-control-label" for="input-username">Username</label>
-                                                <input type="text" id="input-username"
+                                                <input type="text" id="input-username" name="username"
                                                     class="form-control form-control-alternative" placeholder="Username" disabled
                                                     value=" {{object.username}}">
                                             </div>
@@ -2236,7 +2248,7 @@
                                             <div class="form-group">
                                                 <label class="form-control-label" for="input-email">Email
                                                     address</label>
-                                                <input type="email" id="input-email" disabled
+                                                <input type="email" id="input-email" disabled name="email"
                                                     class="form-control form-control-alternative"
                                                     value="{{object.email}}">
                                             </div>
@@ -2247,7 +2259,7 @@
                                             <div class="form-group focused">
                                                 <label class="form-control-label" for="input-first-name">First
                                                     name</label>
-                                                <input type="text" id="input-first-name" disabled
+                                                <input type="text" id="input-first-name" disabled name="first_name"
                                                     class="form-control form-control-alternative"
                                                     value="{{object.first_name}}" value="Lucky">
                                             </div>
@@ -2256,7 +2268,7 @@
                                             <div class="form-group focused">
                                                 <label class="form-control-label" for="input-last-name">Last
                                                     name</label>
-                                                <input type="text" id="input-last-name" disabled
+                                                <input type="text" id="input-last-name" disabled name="last_name"
                                                     class="form-control form-control-alternative"
                                                     value="{{object.last_name}}" value="Jesse">
                                             </div>
@@ -2272,7 +2284,7 @@
                                             <div class="form-group focused">
                                                 <label class="form-control-label" for="input-address">Address</label>
                                                 <input id="input-address" class="form-control form-control-alternative"
-                                                    placeholder="Home Address"
+                                                    placeholder="Home Address" disabled
                                                     value="{{ object.userinformation.address.address_line_1}}, {{ object.userinformation.address.address_line_2}}"
                                                     type="text">
                                             </div>
@@ -2282,9 +2294,9 @@
                                         <div class="col-lg-4">
                                             <div class="form-group focused">
                                                 <label class="form-control-label" for="input-city">City</label>
-                                                <input type="text" id="input-city"
+                                                <input type="text" id="input-city" disabled
                                                     class="form-control form-control-alternative" placeholder="City"
-                                                    value="{{ object.userinformation.address.city}}">
+                                                    value="{% if object.userinformation.address.city %} {{ object.userinformation.address.city}} {% endif %}">
                                             </div>
                                         </div>
                                         <!-- <div class="col-lg-4">
@@ -2300,8 +2312,8 @@
                                                 <label class="form-control-label" for="input-country">Postal
                                                     code</label>
                                                 <input type="number" id="input-postal-code"
-                                                    class="form-control form-control-alternative"
-                                                    value="{{ object.userinformation.address.zip_code}}">
+                                                    class="form-control form-control-alternative" disabled
+                                                    value="{% if  object.userinformation.address.zip_code %}{{ object.userinformation.address.zip_code}} {% endif %}">
                                             </div>
                                         </div>
                                     </div>
@@ -2310,11 +2322,12 @@
                                 <!-- Description -->
                                 <h6 class="heading-small text-muted mb-4">About me</h6>
                                 <div class="pl-lg-4">
-                                    <div class="form-group focused">
-                                        <label>About Me</label>
-                                        <textarea rows="4" class="form-control form-control-alternative"
-                                            placeholder="A few words about you ...">{{object.userinformation.bio}}</textarea>
-                                    </div>
+                                        <textarea rows="4" class="form-control form-control-alternative" disabled
+                                            placeholder="A few words about you ...">
+                                            {% if object.userinformation.bio %}
+                                            {{object.userinformation.bio}}
+                                            {% endif %}
+                                        </textarea>
                                 </div>
                             </form>
                         </div>
@@ -2327,11 +2340,37 @@
         <div class="row align-items-center justify-content-xl-between">
             <div class="col-xl-6 m-auto text-center">
                 <div class="copyright">
-                    <p>Made with <a href="https://www.creative-tim.com/product/argon-dashboard" target="_blank">Argon
-                            Dashboard</a> by Creative Tim</p>
+                    <p>Made with DjanoTemplate </a> by Sleeper</p>
                 </div>
             </div>
         </div>
     </footer>
+    <script>
+        $("#edit-userinfo").click(function(){
+            $("#input-username").prop("disabled",function(i, v) { return !v; });
+            $("#input-email").prop("disabled", function(i, v) { return !v; });
+            $("#input-first-name").prop("disabled", function(i, v) { return !v; });
+            $("#input-last-name").prop("disabled", function(i, v) { return !v; });
+            _editButton =$($("#edit-userinfo").children()[0])
+            if ( _editButton.html() == "Edit"){
+                _editButton.html("Done")
+            }
+            else{
+                _editButton.html("Edit")
+                _data = {
+                    "username": $("#input-username").val(),
+                    "email": $("#input-email").val(),
+                    "first_name": $("#input-first-name").val(),
+                    "last_name": $("#input-last-name").val(),
+                }
+                $.post(url="{% url 'info:user-edit' %}", function(data, error)
+                {
+                    debugger
+                    console.log("ok")
+                }
+                )
+            }
+        })
+    </script>
 </body>
 {% endblock %}

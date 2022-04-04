@@ -1,5 +1,6 @@
 from django.urls import path, include
 from .views import *
+from .api import *
 from rest_framework import routers
 
 # router = routers.DefaultRouter()
@@ -12,5 +13,6 @@ urlpatterns = [
     path("email-user/", EmailUsernameOnly.as_view()),
     path("profile/<int:pk>/", Profile.as_view(), name="profile"),
     path("upload", DocUpload.as_view(), name="doc"),
+    path("user-edit", UpdateUserAPI.as_view(), name="user-edit"),
     # path("", include(router.urls)),
 ]

@@ -272,6 +272,14 @@
 
                     </tbody>
                 </table>
+                {% if request.user.is_superuser %}
+                <button class="btn btn-danger">
+                    <a href="/admin/auth/user/add/" target="_blank">
+                        Add User
+                    </a>
+                    
+                </button>
+                {% endif %}
                 <div class="clearfix">
                     <div class="hint-text">Showing <b>{{page_obj.paginator.per_page}}</b> out of
                         <b>{{page_obj.paginator.count}}</b> entries</div>

@@ -263,11 +263,11 @@
                     </tbody>
                 </table>
                 {% if request.user.is_superuser %}
-                <button>
+                <button type="button" class="btn btn-danger">
                     <a href="/admin/projects/project/add/" target="_blank">
                         Add Project
                     </a>
-                   
+                    
                 </button>
                 {% endif %}
             </div>
