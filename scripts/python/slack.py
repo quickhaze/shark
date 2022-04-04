@@ -13,7 +13,7 @@ from urllib.request import urlretrieve, urlcleanup
 
 # WebClient instantiates a client that can call API methods
 # When using Bolt, you can use either `app.client` or the `client` passed to listeners.
-client = WebClient(token="xoxb-2023650115936-3329529215958-W14C57fShtSPqLA6YAsnFLJg")
+client = WebClient(token="xoxb-2023650115936-3329529215958-FhifEdVEIBv7uOonfXqU5DmA")
 logger = logging.getLogger(__name__)
 # Store conversation history
 conversation_history = []
