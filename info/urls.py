@@ -12,7 +12,9 @@ urlpatterns = [
     path("info_profile/", ProfileCreate.as_view()),
     path("email-user/", EmailUsernameOnly.as_view()),
     path("profile/<int:pk>/", Profile.as_view(), name="profile"),
-    path("upload", DocUpload.as_view(), name="doc"),
-    path("user-edit", UpdateUserAPI.as_view(), name="user-edit"),
+    path("upload/", DocUpload.as_view(), name="doc"),
+    path("user-edit/", UpdateUserAPI.as_view(), name="user-edit"),
+    path("attendance/", AttendanceView.as_view(), name="attendance"),
+    path("attendance/download/", DownloadAtendanceView.as_view(), name="download-attendance"),
     # path("", include(router.urls)),
 ]

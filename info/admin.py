@@ -22,3 +22,5 @@ class InformationAdmin(admin.ModelAdmin):
 
 
 admin.site.register(DailyUpdate)
+admin.site.register(Attendance)
+admin.site.register(LookUp)

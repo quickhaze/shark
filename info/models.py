@@ -8,6 +8,7 @@ from root.models import InitModel, Technology
 from django.core.exceptions import ValidationError
 from datetime import date
 from projects.models import Project
+from info.templatetags.present import last_day_of_month
 
 # Create your models here.
 
@@ -82,9 +83,49 @@ class DailyUpdate(InitModel):
     )
     detail = models.TextField()
     chat_id = models.CharField(null=True, blank=True, max_length=100)
-    
+
     class Meta:
-        ordering = ("date",)
+        ordering = ("-date",)
 
     def __str__(self) -> str:
         return f"{self.detail}"
+
+
+class Attendance(InitModel):
+    user = models.ForeignKey(
+        User,
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name="attendance",
+    )
+
+    def __str__(self) -> str:
+        return f"{self.user}-{self.created_at}"
+
+    class Meta:
+        unique_together = ("user", "created_at")
+
+class LookUp(models.Model):
+    user = models.OneToOneField(
+        User,
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name="look",
+    )
+
+    def __str__(self):
+        return f"{self.user}"
+
+    def attendance(self, month=None):
+        qs = self.user.attendance.filter(
+            created_at__month=date.today().month if not month else month 
+        ).values_list("created_at__day", flat=True)
+        data = {
+            (
+                date.today().replace(day=x).strftime("%a") if not month else date.today().replace(month=month).replace(day=x).strftime("%a"),
+                 x): True if x in qs else False
+            for x in range(1, last_day_of_month(month) + 1)
+        }
+        return data

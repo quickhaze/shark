@@ -1,0 +1,16 @@
+{% for key, value in xl.items %}
+<div class="child 
+{% if value == True %} 
+btn present
+{% elif key.0 == 'Sun' %}
+btn
+{% elif key.0 == 'Sat' %}
+btn
+{% else %} 
+btn absent 
+{% endif %}
+">
+    {{key.0}}
+    {{key.1}}
+</div>
+{% endfor %}
