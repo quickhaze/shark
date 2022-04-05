@@ -91,18 +91,22 @@ class Profile(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs: Any):
         ctx = super().get_context_data(**kwargs)
-        ctx['month'] = int(self.request.GET.get('month', date.today().month))
-        ctx['month_name'] = date.today().replace(month=ctx['month']).strftime("%B")
+        ctx["month"] = int(self.request.GET.get("month", date.today().month))
+        ctx["month_name"] = date.today().replace(month=ctx["month"]).strftime("%B")
         return ctx
 
 
 class DocUpload(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
-        form =  DocumetsForm(request.POST, request.FILES)
+        form = DocumetsForm(request.POST, request.FILES)
         if form.is_valid():
             Documents.objects.create(
-                user_info=request.user.userinformation if not request.user.is_superuser else User.objects.get(pk=int(request.GET.get('user_id'))).userinformation,
-                **form.cleaned_data
+                user_info=request.user.userinformation
+                if not request.user.is_superuser
+                else User.objects.get(
+                    pk=int(request.GET.get("user_id"))
+                ).userinformation,
+                **form.cleaned_data,
             )
         return redirect(reverse("root:index"))
 
@@ -140,8 +144,15 @@ class DownloadAtendanceView(View):
             try:
                 data.append(
                     [user.first_name if user.first_name else user.username]
-                    + [*user.look.attendance.values()]
-                    + [sum([1 if y is True else 0 for y in user.look.attendance.values()])]
+                    + [*user.look.attendance().values()]
+                    + [
+                        sum(
+                            [
+                                1 if y is True else 0
+                                for y in user.look.attendance().values()
+                            ]
+                        )
+                    ]
                 )
             except LookUp.DoesNotExist as e:
                 data.append(
