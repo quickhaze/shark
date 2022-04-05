@@ -17,14 +17,16 @@
         flex: 0 1 calc(12% - 8px);
         /* <-- adjusting for margin */
     }
-    .present{
+
+    .present {
         background-color: green;
     }
-    .absent{
+
+    .absent {
         background-color: coral;
     }
-    absent
-    :root {
+
+    absent :root {
         --blue: #5e72e4;
         --indigo: #5603ad;
         --purple: #8965e0;
@@ -2220,7 +2222,23 @@
                                 </div>
                                 <hr class="my-4">
                                 {% endfor %}
+                                <hr class="my-4">
                             </div>
+                            <div class="text-center">
+                                <h3>
+                                    LogIn-LogOut Logs
+                                </h3>
+                                {% for x in object.attendance.all %}
+                                <div class="">
+                                    On {{x.created_at.date }}
+                                    In - {{x.created_at.time }}
+                                    Out - {{x.updated_at.time }}
+                                </div>
+                                {% endfor %}
+                                
+                            </div>
+                            <hr class="my-4">
+
                         </div>
                     </div>
                     {% if request.user.is_staff or request.user == object %}
@@ -2357,17 +2375,24 @@
                             <hr class="my-4">
                             <!-- Description -->
                             <h6 class="heading-small text-muted mb-4" id="attendance-heading">
-                                Attendance 
-                                <span style="float: right;" ><div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        {{month_name}} 2022
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="{% url 'info:profile' object.pk %}?month=2">February</a>
-                                        <a class="dropdown-item" href="{% url 'info:profile' object.pk %}?month=3">March</a>
-                                      <a class="dropdown-item" href="{% url 'info:profile' object.pk %}?month=4">April</a>
+                                Attendance
+                                <span style="float: right;">
+                                    <div class="dropdown">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button"
+                                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">
+                                            {{month_name}} 2022
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item"
+                                                href="{% url 'info:profile' object.pk %}?month=2">February</a>
+                                            <a class="dropdown-item"
+                                                href="{% url 'info:profile' object.pk %}?month=3">March</a>
+                                            <a class="dropdown-item"
+                                                href="{% url 'info:profile' object.pk %}?month=4">April</a>
+                                        </div>
                                     </div>
-                                  </div></span>
+                                </span>
                             </h6>
                             <div class="pl-lg-4">
                                 <div class="parent">
@@ -2376,6 +2401,9 @@
 
                             </div>
                             <hr class="my-4">
+                            <h6 class="heading-small text-muted mb-4" id="attendance-heading">
+                                Logs
+                            </h6>
 
                         </div>
                     </div>
@@ -2420,16 +2448,16 @@
             }
         })
 
-        $(".heading-small").click(function(e){
+        $(".heading-small").click(function (e) {
             $(e.target).next().toggle()
         })
-        function toggleSmallHeadings(){
-            $(".heading-small").each( function(id){
+        function toggleSmallHeadings() {
+            $(".heading-small").each(function (id) {
                 $($(".heading-small")[id]).next().toggle()
             })
         }
-        $(function() {
-        //    toggleSmallHeadings()
+        $(function () {
+            //    toggleSmallHeadings()
         });
     </script>
 </body>
