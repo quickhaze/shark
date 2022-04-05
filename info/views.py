@@ -123,7 +123,7 @@ class AttendanceView(LoginRequiredMixin, View):
         if not instance:
             instance = Attendance.objects.create(user=request.user)
         instance.save()
-        return JsonResponse({"success": True}, status=200)
+        return redirect(request.GET.get("currentUrl"))
 
 
 # class DownloadAtendanceView(LoginRequiredMixin,PermissionRequiredMixin, View):

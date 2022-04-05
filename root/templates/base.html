@@ -62,10 +62,7 @@
     {% endblock %}
     <script>
         function markAttendance() {
-            $.get("{% url 'info:attendance' %}", function (data, error) {
-                $("#mark-attendance").html("End Work")
-            })
-
+            location.href = "{% url 'info:attendance' %}" + "?currentUrl="+location.href 
         }
     </script>
     <!-- Option 1: Bootstrap Bundle with Popper -->
