@@ -98,10 +98,11 @@ class Profile(LoginRequiredMixin, DetailView):
 
 class DocUpload(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
-        form = DocumetsForm(request.POST, request.FILES)
+        form =  (request.POST, request.FILES)
         if form.is_valid():
             Documents.objects.create(
-                user_info=request.user.userinformation, **form.cleaned_data
+                user_info=request.user.userinformation if not request.user.is_superuser else User.objects.get(pk=int(request.GET.get('user_id'))),
+                **form.cleaned_data
             )
         return redirect(reverse("root:index"))
 

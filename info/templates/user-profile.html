@@ -2223,8 +2223,8 @@
                             </div>
                         </div>
                     </div>
-                    {% include 'add-user-doc.html' %}
                     {% if request.user.is_staff or request.user == object %}
+                    {% include 'add-user-doc.html' %}
                     <div>
                         <h3>
                             List Documents
