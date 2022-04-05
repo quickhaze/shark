@@ -15,7 +15,7 @@
             </div>
             <div class="modal-body ">
                 <div class="" style="margin-left: 33%;">
-                    <form method="post" action="{% url 'info:doc'%}?user_id=object.pk" enctype="multipart/form-data">
+                    <form method="post" action="{% url 'info:doc'%}?user_id={{object.pk}}" enctype="multipart/form-data">
                         {% csrf_token %}
                         <label for="actual-btn1" class="label-document-uploadx"> Type of file </label>
                         <select id="actual-btn1" name="name">
