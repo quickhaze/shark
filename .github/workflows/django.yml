@@ -23,11 +23,11 @@ jobs:
       - name: Install Python dependencies
         run: pip install black flake8
 
-      - name: Run linters
-        uses: wearerequired/lint-action@v1
-        with:
-          black: true
-          flake8: false
+      # - name: Run linters
+      #   uses: wearerequired/lint-action@v1
+      #   with:
+      #     black: true
+      #     flake8: false
 
   build:
     runs-on: ubuntu-latest
