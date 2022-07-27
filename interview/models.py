@@ -60,11 +60,11 @@ class Job(models.Model):
     perks_and_benefits = models.TextField(null=True, blank=True)
 
 
-    def __str__(self):
-        return self.job_name
+    # def __str__(self):
+    #     return self.job_name
 
-    def __repr__(self):
-        return '<Job %s>'% self.job_name
+    # def __repr__(self):
+    #     return '<Job %s>'% self.job_name
 
 class Application(models.Model):
     candidate = models.ForeignKey(Candidate, on_delete=models.CASCADE, related_name='applications')
@@ -122,8 +122,13 @@ class InterviewUpdate(models.Model):
         FINAL = 'final', _('Final Round')
 
     application = models.ForeignKey(Application, on_delete=models.CASCADE, related_name='interview_update')
+<<<<<<< HEAD
+    interviewer = models.ManyToManyField(Interviewer)
+    interview_stage = models.CharField(max_length=7, choices=InterviewRound.choices)
+=======
     interviewer = models.ManyToManyField(User)
     interview_stage = models.CharField(max_length=6, choices=InterviewRound.choices)
+>>>>>>> acd4f2b36252cdae75fff127ba2273500ea41b92
     remark = models.TextField()
     datetime = models.DateTimeField(auto_now_add=True)
     follow_up = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True)
