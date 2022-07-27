@@ -2,6 +2,8 @@ from datetime import datetime
 from statistics import mode
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.core.validators import MinValueValidator, MaxValueValidator
+
 # Create your models here.
 class Interviewer(models.Model):
     name = models.CharField(max_length=50)
@@ -56,14 +58,23 @@ class Candidate(models.Model):
         return '<Candidate %s>'% self.name
 
 class Job(models.Model):
-    job_domain = models.CharField(max_length=15)
-    job_openings = models.CharField(max_length=15)
+    class Requirement(models.TextChoices):
+        PYTHON = 'python', _('Python Developer')
+        REACT = 'react', _('React Developer')
+    job_name = models.CharField(max_length=105,null=True, blank=True)
+    job_description = models.TextField(null=True, blank=True)
+    number_of_openings = models.IntegerField(null=True, blank=True)
+    experience_requride = models.IntegerField(validators=[MinValueValidator(0),MaxValueValidator(10)], null=True, blank=True)
+    responsibilities = models.TextField(null=True, blank=True)
+    requirement = models.CharField(max_length=12, choices=Requirement.choices, default='python')
+    perks_and_benefits = models.TextField(null=True, blank=True)
+
 
     def __str__(self):
-        return self.job_openings
+        return self.job_name
 
     def __repr__(self):
-        return '<Job %s>'% self.job_openings
+        return '<Job %s>'% self.job_name
 
 class Application(models.Model):
     candidate = models.ForeignKey(Candidate, on_delete=models.CASCADE, related_name='applications')
