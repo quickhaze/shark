@@ -1,4 +1,4 @@
-from django.urls import include,path
+from django.urls import path, include
 from .views import *
 from rest_framework import routers
 
@@ -8,7 +8,7 @@ router.register(r'jobs', JobsViewSet, basename='Job')
  
 urlpatterns = [
     path('', include(router.urls)),
-    path('api-auth/', include('rest_framework.urls'))
+    path('api-auth/', include('rest_framework.urls')),
+    path("", QuestionIndexView.as_view(), name="question-index"),
+
 ]
-
-

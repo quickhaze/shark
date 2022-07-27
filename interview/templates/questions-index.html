@@ -1,0 +1,26 @@
+<html>
+
+<body>
+    <h1>
+        Hello world
+    </h1>
+    <div>
+        <ul>
+            {% for q in questions %}
+            <li>
+                <form method="POST" action="{% url 'question-index' %}">
+                    {% csrf_token %}
+                    <label>
+                        {{q}}
+                    </label><br>
+                    <textarea name="q{{forloop.counter}}" rows="4" cols="50"></textarea>
+                    <input type="submit" value="Save">
+                </form>
+            </li>
+            {% endfor %}
+        </ul>
+        <button>Finish</button>
+    </div>
+</body>
+
+</html>
