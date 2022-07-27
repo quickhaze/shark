@@ -9,10 +9,10 @@ question_list =[
 """ Q.3 Write a program to check string is symmetrical or not
 		   			Input: 'amaama'
 		   			Output: 'The entered string is symmetrical' """,
-""" Q.4 A cashier has some amount of money(ex. rs4526). write a program to calculate out how many 						currency of Rs2000, Rs1000, Rs500, Rs100, Rs50, Rs20, Rs10, Rs5 and coins required. """,
+""" Q.4 A cashier has some amount of money(ex. rs4526). write a program to calculate out how many 	currency of Rs2000, Rs1000, Rs500, Rs100, Rs50, Rs20, Rs10, Rs5 and coins required. """,
 """ Q.5 Write a program to count Even and Odd numbers in a List """,
 """ Q.6 Write a program to remove common elements in a list """,
-""" Q.7 Write a program that accepts four digit number from user and calculate the sum of first and last 						digit """,
+""" Q.7 Write a program that accepts four digit number from user and calculate the sum of first and last digit """,
 """ Write a program to print a series(1/1+1/2+1/3+1/4+1/5....). """,
 """ Write a program to calculate sum of series(1/1!+1/2!+1/3!1/4!+1/5!....). """,
 """ Write a program to calculate sum of series(1/1!+1/2!+1/3!1/4!+1/5!....). """,
@@ -25,4 +25,4 @@ question_list =[
 
 import random
 from .models import Question
-question_list = random.sample(Question.objects.values_list('text', flat=True), k=3)
+question_list = random.sample(question_list, k=3)

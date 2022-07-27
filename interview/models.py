@@ -64,7 +64,7 @@ class Job(models.Model):
     job_name = models.CharField(max_length=105,null=True, blank=True)
     job_description = models.TextField(null=True, blank=True)
     number_of_openings = models.IntegerField(null=True, blank=True)
-    experience_requride = models.IntegerField(validators=[MinValueValidator(0),MaxValueValidator(10)], null=True, blank=True)
+    experience_requride = models.IntegerField(validators=[MinValueValidator(0),MaxValueValidator(10 )], null=True, blank=True)
     responsibilities = models.TextField(null=True, blank=True)
     requirement = models.CharField(max_length=12, choices=Requirement.choices, default='python')
     perks_and_benefits = models.TextField(null=True, blank=True)
@@ -118,8 +118,8 @@ class Question(models.Model):
         EASY = 'Easy', _('Easy')
 
     text = models.TextField()
-    language = models.CharField(max_length=20, choices=QuestionLanguage)
-    level = models.CharField(max_length=20, choices=QuestionLevel)
+    language = models.CharField(max_length=20, choices=QuestionLanguage.choices)
+    level = models.CharField(max_length=20, choices=QuestionLevel.choices)
     answer = models.TextField()
 
 

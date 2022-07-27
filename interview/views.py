@@ -1,11 +1,21 @@
 import json
 from django.shortcuts import render
-from django.views import View
-# Create your views here.
+from rest_framework import viewsets
+from .serializers import JobsSerializer
+from .models import Job
 from .questions import question_list
 import random
+# from django.contrib.auth.decorators import login_required
+from django.views import View
 
-@login_required
+
+class JobsViewSet(viewsets.ModelViewSet):
+    queryset = Job.objects.all()
+    serializer_class = JobsSerializer
+# Create your views here.
+
+
+# @login_required
 class QuestionIndexView(View):
 
     def get(self, request, *args, **kwargs):
@@ -14,5 +24,5 @@ class QuestionIndexView(View):
 
     
     def post(self, request, *args, **kwargs):
-        import pdb; pdb.set_trace()
-        return False
+        ctx = {"questions": question_list}
+        return render(request, 'questions-index.html', ctx)
