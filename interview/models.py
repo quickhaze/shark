@@ -122,13 +122,8 @@ class InterviewUpdate(models.Model):
         FINAL = 'final', _('Final Round')
 
     application = models.ForeignKey(Application, on_delete=models.CASCADE, related_name='interview_update')
-<<<<<<< HEAD
-    interviewer = models.ManyToManyField(Interviewer)
-    interview_stage = models.CharField(max_length=7, choices=InterviewRound.choices)
-=======
     interviewer = models.ManyToManyField(User)
     interview_stage = models.CharField(max_length=6, choices=InterviewRound.choices)
->>>>>>> acd4f2b36252cdae75fff127ba2273500ea41b92
     remark = models.TextField()
     datetime = models.DateTimeField(auto_now_add=True)
     follow_up = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True)
