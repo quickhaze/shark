@@ -1,21 +1,11 @@
 from datetime import datetime
 from statistics import mode
 from django.db import models
+from django.contrib.auth.models import User
 from django.utils.translation import gettext_lazy as _
 from django.core.validators import MinValueValidator, MaxValueValidator
 
 # Create your models here.
-class Interviewer(models.Model):
-    name = models.CharField(max_length=50)
-    email = models.EmailField()
-    phone = models.CharField(max_length=12)
-    technology = models.CharField(max_length=10)
-
-    def __str__(self):
-        return self.name
-    
-    def __repr__(self):
-        return '<Interviewer %s>'% self.name
 
 class Candidate(models.Model):
 
@@ -83,7 +73,7 @@ class Application(models.Model):
     date= models.DateField(default=datetime.today)
 
     def __str__(self):
-        return self.candidate
+        return self.candidate.name
         
     def __repr__(self):
         return '<Application %s>'% self.candidate
@@ -132,19 +122,21 @@ class InterviewUpdate(models.Model):
         FINAL = 'final', _('Final Round')
 
     application = models.ForeignKey(Application, on_delete=models.CASCADE, related_name='interview_update')
-    interviewer = models.ManyToManyField(Interviewer)
+    interviewer = models.ManyToManyField(User)
     interview_stage = models.CharField(max_length=6, choices=InterviewRound.choices)
     remark = models.TextField()
     datetime = models.DateTimeField(auto_now_add=True)
-    follow_up = models.ForeignKey('self', on_delete=models.CASCADE, null=True)
+    follow_up = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
-        return self.application
+        return f"{self.application}"
 
     def __repr__(self):
         return '<InterviewUpdate %s>'% self.application
+
 
 class Assesment(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     answer = models.TextField()
     interview = models.ForeignKey(InterviewUpdate, on_delete=models.SET_NULL, null=True, blank=True)
+
