@@ -33,7 +33,7 @@ urlpatterns = (
         path("projects/", include("projects.urls")),
         path("peck/", include("peck.urls")),
         path("caffer/", include("caffer.urls")),
-        path("interview/", include("caffer.urls")),
+        path("interview/", include("interview.urls")),
     ]
     + static(f"{settings.STATIC_URL}", document_root=f"{settings.STATIC_ROOT}")
     + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

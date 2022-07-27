@@ -1,4 +1,5 @@
 from datetime import datetime
+from statistics import mode
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 # Create your models here.
@@ -96,6 +97,23 @@ class Qualification(models.Model):
     def __repr__(self):
         return '<Qualification %s>'% self.candidate
 
+class Question(models.Model):
+    class QuestionLanguage(models.TextChoices):
+        PYTHON = 'Python', _('Python')
+        JAVASCRIPT = 'JavaScript', _('JavaScript')
+    class QuestionLevel(models.TextChoices):
+        HARD = 'Hard', _('Hard')
+        MEDIUM = 'Medium', _('Medium')
+        EASY = 'Easy', _('Easy')
+
+    text = models.TextField()
+    language = models.CharField(max_length=20, choices=QuestionLanguage)
+    level = models.CharField(max_length=20, choices=QuestionLevel)
+    answer = models.TextField()
+
+
+
+
 class InterviewUpdate(models.Model):
     class InterviewRound(models.TextChoices):
         FIRST = 'first',_('First Round')
@@ -114,3 +132,8 @@ class InterviewUpdate(models.Model):
 
     def __repr__(self):
         return '<InterviewUpdate %s>'% self.application
+
+class Assesment(models.Model):
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    answer = models.TextField()
+    interview = models.ForeignKey(InterviewUpdate, on_delete=models.SET_NULL, null=True, blank=True)
