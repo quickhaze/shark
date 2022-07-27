@@ -9,6 +9,6 @@ router.register(r'jobs', JobsViewSet, basename='Job')
 urlpatterns = [
     path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls')),
-    path("", QuestionIndexView.as_view(), name="question-index"),
+    path("questions/", QuestionIndexView.as_view(), name="question-index"),
 
 ]
