@@ -67,16 +67,15 @@ class Job(models.Model):
     #     return '<Job %s>'% self.job_name
 
 class Application(models.Model):
-    candidate = models.ForeignKey(Candidate, on_delete=models.CASCADE, related_name='applications')
-    applying_job = models.ForeignKey(Job, on_delete=models.CASCADE)
+    email = models.EmailField(null=True, blank=True)
+    phone_number = models.IntegerField(null=True, blank=True)
     resume = models.FileField(upload_to='media')
-    date= models.DateField(default=datetime.today)
 
     def __str__(self):
-        return self.candidate.name
+        return self.email
         
     def __repr__(self):
-        return '<Application %s>'% self.candidate
+        return '<Application %s>'% self.email
 
 class Qualification(models.Model):
     class Graduation(models.TextChoices):

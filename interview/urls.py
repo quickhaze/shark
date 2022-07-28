@@ -5,7 +5,7 @@ from .api import *
 router = routers.DefaultRouter()
  
 router.register(r'jobs', JobsViewSet, basename='Job')
-router.register(r'application', ApplicationViewSet, basename='application')
+router.register(r'resume', ApplicationViewSet, basename='application')
 router.register(r'question', QuestionViewSet, basename='question')
 router.register(r'interviewupdate', InterviewUpdateViewSet, basename='interviewupdate')
 router.register(r'candidateviewSet', CandidateViewSet, basename='candidateviewSet')
