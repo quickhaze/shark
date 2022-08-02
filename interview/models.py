@@ -67,6 +67,7 @@ class Job(models.Model):
     #     return '<Job %s>'% self.job_name
 
 class Application(models.Model):
+    full_name = models.CharField(max_length=120, blank=True, null=True)
     email = models.EmailField(null=True, blank=True)
     phone_number = models.IntegerField(null=True, blank=True)
     resume = models.FileField(upload_to='media')
@@ -139,3 +140,11 @@ class Assesment(models.Model):
     answer = models.TextField()
     interview = models.ForeignKey(InterviewUpdate, on_delete=models.SET_NULL, null=True, blank=True)
 
+
+class TrackCondidateStatus(models.Model):
+    candidate = models.ForeignKey(Candidate, on_delete=models.CASCADE)
+    call_chat_data= models.CharField(max_length=200, null=True, blank=True)
+    interview_date = models.DateField()
+    interview_timing = models.TimeField()
+    candidate_present = models.BooleanField(null=True,blank=True)
+    revise_interview_date = models.DateField(null=True,blank=True)
