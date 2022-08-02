@@ -8,5 +8,6 @@ admin.site.register( Application)
 admin.site.register( Qualification)
 admin.site.register( InterviewUpdate)
 admin.site.register( Question)
+admin.site.register( TrackCondidateStatus)
 admin.site.register( Assesment)
 
